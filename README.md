@@ -3,5 +3,5 @@ android-material-drawer-template
 
 An Android template with navigation drawer for material design
 
-![ParallaxListView](https://github.com/kanytu/android-material-drawer-template/blob/screenshots/screenshot1.gif)
+![ParallaxListView](https://raw.githubusercontent.com/kanytu/android-material-drawer-template/master/screenshots/screenshot1.gif)
 
