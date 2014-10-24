@@ -8,6 +8,4 @@
     <include
         layout="@layout/toolbar_actionbar"/>
 
-    <include
-        layout="@layout/drawer_layout"/>
 </RelativeLayout>

@@ -7,4 +7,5 @@
     android:layout_height="50dp"
     android:layout_marginLeft="15dp"
     android:gravity="center_vertical"
+    android:textColor="#000000"
     />
