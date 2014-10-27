@@ -1,12 +1,11 @@
 package com.poliveira.apps.materialtests;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.poliveira.apps.materialtests.NavigationDrawerFragment.NavigationDrawerCallbacks;
 
 import java.util.List;
 
@@ -17,6 +16,7 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
 
     private List<NavigationItem> mData;
     private NavigationDrawerCallbacks mNavigationDrawerCallbacks;
+    private int mSelectedPosition;
 
     public NavigationDrawerAdapter(List<NavigationItem> data) {
         mData = data;
@@ -43,9 +43,23 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
             @Override
             public void onClick(View v) {
                 if (mNavigationDrawerCallbacks != null)
-                    mNavigationDrawerCallbacks.onNavigationDrawerItemSelected(v, i);
+                    mNavigationDrawerCallbacks.onNavigationDrawerItemSelected(i);
             }
         });
+
+        if (mSelectedPosition == i) {
+            //TODO: selected menu position, change layout accordingly
+            viewHolder.itemView.setBackgroundColor(Color.LTGRAY);
+        } else {
+            viewHolder.itemView.setBackgroundColor(Color.TRANSPARENT);
+        }
+    }
+
+    public void selectPosition(int position) {
+        int lastPosition = mSelectedPosition;
+        mSelectedPosition = position;
+        notifyItemChanged(lastPosition);
+        notifyItemChanged(position);
     }
 
     @Override
@@ -58,11 +72,11 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
 
         public ViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView;
+            textView = (TextView) itemView.findViewById(R.id.item_name);
         }
 
         public void setOnClickListener(View.OnClickListener onClickListener) {
-            textView.setOnClickListener(onClickListener);
+            itemView.setOnClickListener(onClickListener);
         }
     }
 }
