@@ -4,17 +4,12 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.view.View;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
@@ -33,23 +28,16 @@ public class MainActivity extends ActionBarActivity {
         mActionBarDrawerToggle.syncState();
         mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        List<String> menuText = new ArrayList<String>(3);
-        menuText.add("menu1");
-        menuText.add("menu2");
-        menuText.add("menu3");
-        DrawerAdapter adapter = new DrawerAdapter(menuText);
-
-        recyclerView.setAdapter(adapter);
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onNavigationDrawerItemSelected(View v, int position) {
+
     }
 }
