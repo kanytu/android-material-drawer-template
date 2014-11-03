@@ -3,6 +3,7 @@ package com.poliveira.apps.materialtests;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -17,6 +18,8 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
     private List<NavigationItem> mData;
     private NavigationDrawerCallbacks mNavigationDrawerCallbacks;
     private int mSelectedPosition;
+    private int mTouchedPosition;
+    private boolean isClick = false;
 
     public NavigationDrawerAdapter(List<NavigationItem> data) {
         mData = data;
@@ -39,20 +42,54 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
     @Override
     public void onBindViewHolder(NavigationDrawerAdapter.ViewHolder viewHolder, final int i) {
         viewHolder.textView.setText(mData.get(i).getText());
-        viewHolder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mNavigationDrawerCallbacks != null)
-                    mNavigationDrawerCallbacks.onNavigationDrawerItemSelected(i);
-            }
-        });
+        viewHolder.textView.setCompoundDrawablesWithIntrinsicBounds(mData.get(i).getDrawable(), null, null, null);
 
-        if (mSelectedPosition == i) {
-            //TODO: selected menu position, change layout accordingly
+        viewHolder.itemView.setOnTouchListener(new View.OnTouchListener() {
+                                                   @Override
+                                                   public boolean onTouch(View v, MotionEvent event) {
+
+                                                       switch (event.getAction()) {
+                                                           case MotionEvent.ACTION_DOWN:
+                                                               isClick = true;
+                                                               touchPosition(i);
+                                                               return true;
+                                                           case MotionEvent.ACTION_CANCEL:
+                                                               touchPosition(-1);
+                                                               return true;
+                                                           case MotionEvent.ACTION_MOVE:
+                                                               isClick = false;
+                                                               return false;
+                                                           case MotionEvent.ACTION_UP:
+                                                               touchPosition(-1);
+                                                               if (isClick && mNavigationDrawerCallbacks != null) {
+                                                                   mNavigationDrawerCallbacks.onNavigationDrawerItemSelected(i);
+                                                               }
+                                                               return true;
+                                                       }
+                                                       return false;
+
+                                                   }
+                                               }
+        );
+
+
+        //TODO: selected menu position, change layout accordingly
+        if (mSelectedPosition == i && mTouchedPosition == i) {
             viewHolder.itemView.setBackgroundColor(Color.LTGRAY);
+        } else if (mSelectedPosition == i || mTouchedPosition == i) {
+            viewHolder.itemView.setBackgroundColor(viewHolder.itemView.getContext().getResources().getColor(R.color.selected_gray));
         } else {
             viewHolder.itemView.setBackgroundColor(Color.TRANSPARENT);
         }
+    }
+
+    private void touchPosition(int position) {
+        int lastPosition = mTouchedPosition;
+        mTouchedPosition = position;
+        if (lastPosition >= 0)
+            notifyItemChanged(lastPosition);
+        if (position >= 0)
+            notifyItemChanged(position);
     }
 
     public void selectPosition(int position) {
@@ -73,10 +110,6 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
         public ViewHolder(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.item_name);
-        }
-
-        public void setOnClickListener(View.OnClickListener onClickListener) {
-            itemView.setOnClickListener(onClickListener);
         }
     }
 }
