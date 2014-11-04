@@ -50,33 +50,32 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
 
                                                        switch (event.getAction()) {
                                                            case MotionEvent.ACTION_DOWN:
-                                                               isClick = true;
                                                                touchPosition(i);
-                                                               return true;
+                                                               return false;
                                                            case MotionEvent.ACTION_CANCEL:
                                                                touchPosition(-1);
-                                                               return true;
+                                                               return false;
                                                            case MotionEvent.ACTION_MOVE:
-                                                               isClick = false;
                                                                return false;
                                                            case MotionEvent.ACTION_UP:
                                                                touchPosition(-1);
-                                                               if (isClick && mNavigationDrawerCallbacks != null) {
-                                                                   mNavigationDrawerCallbacks.onNavigationDrawerItemSelected(i);
-                                                               }
-                                                               return true;
+                                                               return false;
                                                        }
-                                                       return false;
-
+                                                       return true;
+                                                   }
+                                               }
+        );
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                                                   @Override
+                                                   public void onClick(View v) {
+                                                       if (mNavigationDrawerCallbacks != null)
+                                                           mNavigationDrawerCallbacks.onNavigationDrawerItemSelected(i);
                                                    }
                                                }
         );
 
-
         //TODO: selected menu position, change layout accordingly
-        if (mSelectedPosition == i && mTouchedPosition == i) {
-            viewHolder.itemView.setBackgroundColor(Color.LTGRAY);
-        } else if (mSelectedPosition == i || mTouchedPosition == i) {
+        if (mSelectedPosition == i || mTouchedPosition == i) {
             viewHolder.itemView.setBackgroundColor(viewHolder.itemView.getContext().getResources().getColor(R.color.selected_gray));
         } else {
             viewHolder.itemView.setBackgroundColor(Color.TRANSPARENT);
