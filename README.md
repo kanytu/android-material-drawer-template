@@ -22,3 +22,10 @@ An Android template with navigation drawer for material design
 ![ParallaxListView](https://raw.githubusercontent.com/kanytu/android-material-drawer-template/master/screenshots/screenshot1.gif)
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-android--material--drawer--template-brightgreen.svg?style=flat)](https://android-arsenal.com/details/3/1096)
+
+
+
+## License
+Copyright (c) 2011 Pedro Oliveira
+
+Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
