@@ -35,4 +35,12 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
     public void onNavigationDrawerItemSelected(int position) {
         Toast.makeText(this, "Menu item selected -> " + position, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void onBackPressed() {
+        if (mNavigationDrawerFragment.isDrawerOpen())
+            mNavigationDrawerFragment.closeDrawer();
+        else
+            super.onBackPressed();
+    }
 }
