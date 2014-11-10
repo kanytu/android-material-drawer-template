@@ -170,7 +170,6 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        mCallbacks.onNavigationDrawerItemSelected(position);
         selectItem(position);
     }
 
