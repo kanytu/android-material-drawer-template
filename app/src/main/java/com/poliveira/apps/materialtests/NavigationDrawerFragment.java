@@ -1,12 +1,12 @@
 package com.poliveira.apps.materialtests;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by poliveira on 24/10/2014.
  */
-public class NavigationDrawerFragment extends Fragment implements NavigationDrawerCallbacks {
+public class NavigationDrawerFragment extends android.support.v4.app.Fragment implements NavigationDrawerCallbacks {
     private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
     private static final String STATE_SELECTED_POSITION = "selected_navigation_drawer_position";
     private static final String PREFERENCES_FILE = "my_app_settings"; //TODO: change this to your file
@@ -90,7 +90,8 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
                 if (!isAdded()) return;
-                getActivity().invalidateOptionsMenu();
+                ActivityCompat.invalidateOptionsMenu(getActivity());
+                //getActivity().invalidateOptionsMenu();
             }
 
             @Override
@@ -101,8 +102,8 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
                     mUserLearnedDrawer = true;
                     saveSharedSetting(getActivity(), PREF_USER_LEARNED_DRAWER, "true");
                 }
-
-                getActivity().invalidateOptionsMenu();
+                ActivityCompat.invalidateOptionsMenu(getActivity());
+                //getActivity().invalidateOptionsMenu();
             }
         };
 
@@ -185,7 +186,8 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
         SharedPreferences sharedPref = ctx.getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(settingName, settingValue);
-        editor.apply();
+        //editor.apply();
+        editor.commit();
     }
 
     public static String readSharedSetting(Context ctx, String settingName, String defaultValue) {
