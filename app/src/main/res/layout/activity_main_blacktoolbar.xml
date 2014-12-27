@@ -25,7 +25,7 @@
     <fragment
         android:id="@+id/fragment_drawer"
         android:layout_marginTop="@dimen/abc_action_bar_default_height_material"
-        android:name="com.poliveira.apps.materialtests.NavigationDrawerFragment"
+        android:name="com.poliveira.apps.materialtests.MainNavigationDrawerFragment"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"

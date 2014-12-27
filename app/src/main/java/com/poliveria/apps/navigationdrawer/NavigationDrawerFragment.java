@@ -1,4 +1,4 @@
-package com.poliveira.apps.materialtests;
+package com.poliveria.apps.navigationdrawer;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -16,13 +16,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.poliveira.apps.materialtests.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by poliveira on 24/10/2014.
  */
-public class NavigationDrawerFragment extends Fragment implements NavigationDrawerCallbacks {
+public abstract class NavigationDrawerFragment extends Fragment implements NavigationDrawerCallbacks {
     private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
     private static final String STATE_SELECTED_POSITION = "selected_navigation_drawer_position";
     private static final String PREFERENCES_FILE = "my_app_settings"; //TODO: change this to your file
@@ -133,13 +135,7 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
         mCallbacks = null;
     }
 
-    public List<NavigationItem> getMenu() {
-        List<NavigationItem> items = new ArrayList<NavigationItem>();
-        items.add(new NavigationItem("item 1", getResources().getDrawable(R.drawable.ic_menu_check)));
-        items.add(new NavigationItem("item 2", getResources().getDrawable(R.drawable.ic_menu_check)));
-        items.add(new NavigationItem("item 3", getResources().getDrawable(R.drawable.ic_menu_check)));
-        return items;
-    }
+    public abstract List<NavigationItem> getMenu();
 
     void selectItem(int position) {
         mCurrentSelectedPosition = position;

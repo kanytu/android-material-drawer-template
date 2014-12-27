@@ -1,4 +1,4 @@
-package com.poliveira.apps.materialtests;
+package com.poliveria.apps.navigationdrawer;
 
 import android.graphics.drawable.Drawable;
 
