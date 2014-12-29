@@ -33,23 +33,23 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
     }
 
     @Override
-    public NavigationDrawerAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.drawer_row, viewGroup, false);
+    public NavigationDrawerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.drawer_row, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(NavigationDrawerAdapter.ViewHolder viewHolder, final int i) {
-        viewHolder.textView.setText(mData.get(i).getText());
-        viewHolder.textView.setCompoundDrawablesWithIntrinsicBounds(mData.get(i).getDrawable(), null, null, null);
+    public void onBindViewHolder(NavigationDrawerAdapter.ViewHolder holder, final int position) {
+        holder.textView.setText(mData.get(position).getText());
+        holder.textView.setCompoundDrawablesWithIntrinsicBounds(mData.get(position).getDrawable(), null, null, null);
 
-        viewHolder.itemView.setOnTouchListener(new View.OnTouchListener() {
+        holder.itemView.setOnTouchListener(new View.OnTouchListener() {
                                                    @Override
                                                    public boolean onTouch(View v, MotionEvent event) {
 
                                                        switch (event.getAction()) {
                                                            case MotionEvent.ACTION_DOWN:
-                                                               touchPosition(i);
+                                                               touchPosition(position);
                                                                return false;
                                                            case MotionEvent.ACTION_CANCEL:
                                                                touchPosition(-1);
@@ -64,20 +64,20 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
                                                    }
                                                }
         );
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
                                                    @Override
                                                    public void onClick(View v) {
                                                        if (mNavigationDrawerCallbacks != null)
-                                                           mNavigationDrawerCallbacks.onNavigationDrawerItemSelected(i);
+                                                           mNavigationDrawerCallbacks.onNavigationDrawerItemSelected(position);
                                                    }
                                                }
         );
 
         //TODO: selected menu position, change layout accordingly
-        if (mSelectedPosition == i || mTouchedPosition == i) {
-            viewHolder.itemView.setBackgroundColor(viewHolder.itemView.getContext().getResources().getColor(R.color.selected_gray));
+        if (mSelectedPosition == position || mTouchedPosition == position) {
+            holder.itemView.setBackgroundColor(holder.itemView.getContext().getResources().getColor(R.color.selected_gray));
         } else {
-            viewHolder.itemView.setBackgroundColor(Color.TRANSPARENT);
+            holder.itemView.setBackgroundColor(Color.TRANSPARENT);
         }
     }
 
