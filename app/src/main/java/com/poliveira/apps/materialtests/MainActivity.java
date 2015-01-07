@@ -7,6 +7,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.poliveria.apps.navigationdrawer.NavigationDrawerCallbacks;
+import com.poliveria.apps.navigationdrawer.NavigationDrawerFragment;
+
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerCallbacks {
 

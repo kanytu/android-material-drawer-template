@@ -1,4 +1,4 @@
-package com.poliveira.apps.materialtests;
+package com.poliveria.apps.navigationdrawer;
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.poliveira.apps.materialtests.R;
 
 import java.util.List;
 
