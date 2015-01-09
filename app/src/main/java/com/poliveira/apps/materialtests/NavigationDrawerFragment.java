@@ -85,6 +85,9 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
     public void setup(int fragmentId, DrawerLayout drawerLayout, Toolbar toolbar) {
         mFragmentContainerView = getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
+        mDrawerLayout.setStatusBarBackgroundColor(
+                getResources().getColor(R.color.myPrimaryDarkColor));
+
         mActionBarDrawerToggle = new ActionBarDrawerToggle(getActivity(), mDrawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
             @Override
             public void onDrawerClosed(View drawerView) {
