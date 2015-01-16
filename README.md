@@ -33,7 +33,7 @@ There are three example XML's for you activities. All them with diferent approac
 ![NavigationDrawer](https://raw.githubusercontent.com/kanytu/android-material-drawer-template/master/screenshots/drawer_bellow.gif)
 
 
-**activity_main_toolbar** *Navigation drawer bellow the toolbar, toolbar transition to black (Google Play Store style)*
+**activity_main_blacktoolbar** *Navigation drawer bellow the toolbar, toolbar transition to black (Google Play Store style)*
 
 ![NavigationDrawer](https://raw.githubusercontent.com/kanytu/android-material-drawer-template/master/screenshots/playstore_style.gif)
 
