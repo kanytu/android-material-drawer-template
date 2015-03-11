@@ -3,7 +3,7 @@ android-material-drawer-template
 
 **NEW**
 =======
-**I released a new template. You can install it on your Android Studio to create Material Design applications easy than ever. Check it out here:**  https://github.com/kanytu/Android-studio-material-template
+**I released a new template. You can install it on your Android Studio to create Material Design applications easier than ever. Check it out here:**  https://github.com/kanytu/Android-studio-material-template
 
 
 ----------
