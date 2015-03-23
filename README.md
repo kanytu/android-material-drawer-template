@@ -5,6 +5,9 @@ android-material-drawer-template
 =======
 **I released a new template. You can install it on your Android Studio to create Material Design applications easier than ever. Check it out here:**  https://github.com/kanytu/Android-studio-material-template
 
+---
+**DEPRECATED**
+I'm not currently supporting this repository. Please check [Android Studio template](https://github.com/kanytu/Android-studio-material-template) for an updated material template for Android Studio.
 
 ----------
 
@@ -49,6 +52,14 @@ There are three example XML's for you activities. All them with diferent approac
 **activity_main_topdrawer** *Navigation drawer on top of the toolbar (Gmail style)*
 
 ![NavigationDrawer](https://raw.githubusercontent.com/kanytu/android-material-drawer-template/master/screenshots/drawer_over_toolbar.gif)
+
+
+---
+There are also two XML's for the navigation drawer. You can alternate between these two by changing: `(...) inflater.inflate(R.layout.fragment_navigation_google, container, false);` on NavigationDrawerFragment:43
+
+
+**fragment_navigation_drawer** *Normal navigation drawer with just a RecyclerView.*
+**fragment_navigation_google** *Navigation drawer with the same theme as Google apps*
 
 
 

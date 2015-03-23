@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -39,7 +40,7 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        View view = inflater.inflate(R.layout.fragment_navigation_google, container, false);
         mDrawerList = (RecyclerView) view.findViewById(R.id.drawerList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -84,6 +85,9 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
 
     public void setup(int fragmentId, DrawerLayout drawerLayout, Toolbar toolbar) {
         mFragmentContainerView = getActivity().findViewById(fragmentId);
+        if(mFragmentContainerView.getParent() instanceof ScrimInsetsFrameLayout){
+            mFragmentContainerView = (View) mFragmentContainerView.getParent();
+        }
         mDrawerLayout = drawerLayout;
         mDrawerLayout.setStatusBarBackgroundColor(
                 getResources().getColor(R.color.myPrimaryDarkColor));
@@ -142,6 +146,25 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
         items.add(new NavigationItem("item 2", getResources().getDrawable(R.drawable.ic_menu_check)));
         items.add(new NavigationItem("item 3", getResources().getDrawable(R.drawable.ic_menu_check)));
         return items;
+    }
+
+    /**
+     * Changes the icon of the drawer to back
+     */
+    public void showBackButton() {
+        if (getActivity() instanceof ActionBarActivity) {
+            ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    /**
+     * Changes the icon of the drawer to menu
+     */
+    public void showDrawerButton() {
+        if (getActivity() instanceof ActionBarActivity) {
+            ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        }
+        mActionBarDrawerToggle.syncState();
     }
 
     void selectItem(int position) {

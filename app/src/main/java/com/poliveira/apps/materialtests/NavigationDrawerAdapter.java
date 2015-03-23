@@ -35,21 +35,14 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
     @Override
     public NavigationDrawerAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.drawer_row, viewGroup, false);
-        return new ViewHolder(v);
-    }
-
-    @Override
-    public void onBindViewHolder(NavigationDrawerAdapter.ViewHolder viewHolder, final int i) {
-        viewHolder.textView.setText(mData.get(i).getText());
-        viewHolder.textView.setCompoundDrawablesWithIntrinsicBounds(mData.get(i).getDrawable(), null, null, null);
-
-        viewHolder.itemView.setOnTouchListener(new View.OnTouchListener() {
+        final ViewHolder viewholder = new ViewHolder(v);
+        viewholder.itemView.setOnTouchListener(new View.OnTouchListener() {
                                                    @Override
                                                    public boolean onTouch(View v, MotionEvent event) {
 
                                                        switch (event.getAction()) {
                                                            case MotionEvent.ACTION_DOWN:
-                                                               touchPosition(i);
+                                                               touchPosition(viewholder.getAdapterPosition());
                                                                return false;
                                                            case MotionEvent.ACTION_CANCEL:
                                                                touchPosition(-1);
@@ -64,14 +57,21 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
                                                    }
                                                }
         );
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        viewholder.itemView.setOnClickListener(new View.OnClickListener() {
                                                    @Override
                                                    public void onClick(View v) {
                                                        if (mNavigationDrawerCallbacks != null)
-                                                           mNavigationDrawerCallbacks.onNavigationDrawerItemSelected(i);
+                                                           mNavigationDrawerCallbacks.onNavigationDrawerItemSelected(viewholder.getAdapterPosition());
                                                    }
                                                }
         );
+        return viewholder;
+    }
+
+    @Override
+    public void onBindViewHolder(NavigationDrawerAdapter.ViewHolder viewHolder, final int i) {
+        viewHolder.textView.setText(mData.get(i).getText());
+        viewHolder.textView.setCompoundDrawablesWithIntrinsicBounds(mData.get(i).getDrawable(), null, null, null);
 
         //TODO: selected menu position, change layout accordingly
         if (mSelectedPosition == i || mTouchedPosition == i) {
