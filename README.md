@@ -36,7 +36,7 @@ An Android template with navigation drawer for material design
 **Note**
 =
 
-There are three example XML's for you activities. All them with diferent approaches on the navigation drawer pattern:
+There are three example XML's for you activities. All them with different approaches on the navigation drawer pattern:
 
 
 **activity_main.xml** *Navigation drawer bellow the toolbar. (Google Inbox style)*
